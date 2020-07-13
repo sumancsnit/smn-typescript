@@ -1,28 +1,19 @@
-function add(n1: number, n2: number) {
-  return n1 + n2;
+class Department {
+  name: string;
+
+  constructor(n: string) {
+    this.name = n;
+  }
+
+  describe(this: Department) {
+    console.log('Department: ' + this.name);
+  }
 }
 
-function printResult(num: number): void {
-  console.log('Result: ' + num);
-}
+const accounting = new Department('Accounting');
 
-function addAndHandle(n1: number, n2: number, cb: (num: number) => void) {
-  const result = n1 + n2;
-  cb(result);
-}
+accounting.describe();
 
-printResult(add(5, 12));
+const accountingCopy = { name: 'DUMMY', describe: accounting.describe };
 
-let combineValues: (a: number, b: number) => number;
-
-combineValues = add;
-// combineValues = printResult;
-// combineValues = 5;
-
-console.log(combineValues(8, 8));
-
-// let someValue: undefined;
-
-addAndHandle(10, 20, (result) => {
-  console.log(result);
-});
+accountingCopy.describe();
